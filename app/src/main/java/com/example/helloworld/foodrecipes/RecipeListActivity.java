@@ -32,4 +32,8 @@ public class RecipeListActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void searchRecipesApi(String query , int pageNumber){
+        recipeListViewModel.searchRecipesApi(query, pageNumber);
+    }
 }
