@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import com.example.helloworld.foodrecipes.models.Recipe;
 import com.example.helloworld.foodrecipes.viewmodels.RecipeListViewModel;
 

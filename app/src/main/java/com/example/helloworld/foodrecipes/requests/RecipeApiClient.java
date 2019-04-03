@@ -3,18 +3,15 @@ package com.example.helloworld.foodrecipes.requests;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
-
 import com.example.helloworld.foodrecipes.AppExecutors;
 import com.example.helloworld.foodrecipes.models.Recipe;
 import com.example.helloworld.foodrecipes.requests.responses.RecipeSearchResponse;
 import com.example.helloworld.foodrecipes.util.Constants;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-
 import retrofit2.Call;
 import retrofit2.Response;
 

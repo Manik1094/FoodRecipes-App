@@ -1,8 +1,6 @@
 package com.example.helloworld.foodrecipes.repositories;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-
 import com.example.helloworld.foodrecipes.models.Recipe;
 import com.example.helloworld.foodrecipes.requests.RecipeApiClient;
 
