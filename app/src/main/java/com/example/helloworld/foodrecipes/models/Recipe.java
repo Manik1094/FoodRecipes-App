@@ -12,10 +12,10 @@ public class Recipe implements Parcelable {
     private String[] ingredients;
     private String recipe_id;
     private String image_url;
-    private int social_rank;
+    private double social_rank;
 
     public Recipe(String title, String publisher, String[] ingredients,
-                  String recipe_id, String image_url, int social_rank) {
+                  String recipe_id, String image_url, double social_rank) {
         this.title = title;
         this.publisher = publisher;
         this.ingredients = ingredients;
@@ -32,7 +32,7 @@ public class Recipe implements Parcelable {
         ingredients = in.createStringArray();
         recipe_id = in.readString();
         image_url = in.readString();
-        social_rank = in.readInt();
+        social_rank = in.readDouble();
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -87,7 +87,7 @@ public class Recipe implements Parcelable {
         this.image_url = image_url;
     }
 
-    public int getSocial_rank() {
+    public double getSocial_rank() {
         return social_rank;
     }
 
@@ -119,6 +119,6 @@ public class Recipe implements Parcelable {
         dest.writeStringArray(ingredients);
         dest.writeString(recipe_id);
         dest.writeString(image_url);
-        dest.writeInt(social_rank);
+        dest.writeDouble(social_rank);
     }
 }

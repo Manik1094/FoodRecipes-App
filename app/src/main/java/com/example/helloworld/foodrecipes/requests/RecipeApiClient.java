@@ -25,6 +25,7 @@ public class RecipeApiClient {
     private MutableLiveData<List<Recipe>> mRecipes;
     private RetreiveRecipesRunnable mRetrieveRecipesRunnable;
 
+
     public static RecipeApiClient getInstance(){
         if(instance == null){
             instance = new RecipeApiClient();
@@ -41,19 +42,22 @@ public class RecipeApiClient {
     }
 
     public void searchRecipesApi(String query , int pageNumber){
+        Log.e(TAG, "searchRecipesApi: Inside searchRecipesApi"+query + pageNumber );
         if(mRetrieveRecipesRunnable!=null){
             mRetrieveRecipesRunnable = null;
         }
         mRetrieveRecipesRunnable = new RetreiveRecipesRunnable(query , pageNumber);
-        final Future handler = AppExecutors.getInstance().networkIO().submit(mRetrieveRecipesRunnable);
+      final Future handler = AppExecutors.getInstance().networkIO().submit(mRetrieveRecipesRunnable);
 
         AppExecutors.getInstance().networkIO().schedule(new Runnable() {
             @Override
             public void run() {
-                //this will run after 3 seconds
-                //Let the user know its timed out
-                //Basically after 3 seconds the request we are making above will be cancelled
+
+               // this will run after 3 seconds
+               // Let the user know its timed out
+               // Basically after 3 seconds the request we are making above will be cancelled
                 handler.cancel(true);
+                Log.e(TAG, "run: Request timeout" );
             }
         } , NETWORK_TIMEOUT , TimeUnit.MILLISECONDS);
     }
@@ -72,14 +76,18 @@ public class RecipeApiClient {
 
         @Override
         public void run() {
+            Log.e(TAG, "run: Inside run method of RetreiveRecipesRunnable" );
 
             try {
                 Response response = getRecipes(query , pageNumber).execute();
+                Log.e(TAG, "run: Response code is"+response.code() );
                 if(cancelRequest){
                     return;
                 }
                 if(response.code() == 200){
+                    Log.e(TAG, "run: Response"+response.body() );
                     List<Recipe> list = new ArrayList<>(((RecipeSearchResponse)response.body()).getRecipes());
+                    Log.e(TAG, "run: SIze of list received"+list.size());
                     if(pageNumber == 1){
                         mRecipes.postValue(list);
                     }else{
@@ -92,7 +100,8 @@ public class RecipeApiClient {
                     Log.e(TAG, "run: "+error );
                     mRecipes.postValue(null);
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
+                Log.e(TAG, "run: Error"+e.toString() );
                 e.printStackTrace();
                 mRecipes.postValue(null);
             }

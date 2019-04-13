@@ -1,6 +1,8 @@
 package com.example.helloworld.foodrecipes.repositories;
 
 import android.arch.lifecycle.LiveData;
+import android.util.Log;
+
 import com.example.helloworld.foodrecipes.models.Recipe;
 import com.example.helloworld.foodrecipes.requests.RecipeApiClient;
 
@@ -10,6 +12,7 @@ public class RecipeRepository {
 
     private static RecipeRepository instance;
     private RecipeApiClient recipeApiClient;
+    private static final String TAG = "RecipeRepository";
 
 
     public static RecipeRepository getInstance(){
@@ -32,6 +35,7 @@ public class RecipeRepository {
         if(pageNumber == 0){
             pageNumber = 1;
         }
+        Log.e(TAG, "searchRecipesApi: Inside searchRecipesApi method");
         recipeApiClient.searchRecipesApi(query , pageNumber);
     }
 

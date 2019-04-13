@@ -39,5 +39,12 @@ dependencies {
     //RecyclerView
     implementation "com.android.support:recyclerview-v7:28.0.0"
 
+    //Glide
+    implementation "com.github.bumptech.glide:glide:4.9.0"
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    //Design support
+    implementation "com.android.support:design:28.0.0"
+
 
 }

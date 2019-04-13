@@ -2,7 +2,6 @@ package com.example.helloworld.foodrecipes.requests;
 
 import com.example.helloworld.foodrecipes.requests.responses.RecipeResponse;
 import com.example.helloworld.foodrecipes.requests.responses.RecipeSearchResponse;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
